@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TP MITM - Donovan Nguyen Van-Danh</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="../index.html#accueil" class="logo">Donovan <span>Nguyen Van-Danh</span></a>
+      <nav class="nav-links">
+        <a href="../index.html#accueil">Accueil</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#synthese">Tableau de synthèse</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="project-detail">
+    <div class="container">
+      <div class="hero-actions">
+        <a href="../index.html#projets" class="btn btn-secondary">← Retour au portfolio</a>
+        <span class="badge">Documentation projet • Cybersécurité</span>
+      </div>
+
+      <h1>Analyse d’une attaque Man-In-The-Middle</h1>
+
+      <section class="detail-card">
+        <h2>Réalisation professionnelle</h2>
+        <p>
+          Réalisation d’un travail pratique de cybersécurité portant sur l’analyse d’une attaque
+          Man-In-The-Middle dans un environnement virtualisé.
+        </p>
+      </section>
+
+      <section class="detail-card">
+        <h2>Contexte</h2>
+        <p>
+          Dans le cadre de ma formation en BTS SIO, j’ai réalisé un TP permettant de comprendre
+          le fonctionnement d’une attaque MITM sur un réseau local. Le but était d’observer
+          l’interception de communications en HTTP, puis de comparer le résultat après sécurisation
+          du serveur avec HTTPS.
+        </p>
+      </section>
+
+      <section class="detail-card">
+        <h2>Objectifs</h2>
+        <ul>
+          <li>Déployer un environnement de test avec plusieurs machines virtuelles.</li>
+          <li>Comprendre le rôle des adresses IP et MAC dans la communication réseau.</li>
+          <li>Étudier le fonctionnement du protocole ARP.</li>
+          <li>Mettre en évidence le principe de l’ARP spoofing.</li>
+          <li>Observer l’interception d’identifiants transmis en HTTP.</li>
+          <li>Mettre en place HTTPS et constater la protection apportée par le chiffrement.</li>
+        </ul>
+      </section>
+
+      <section class="detail-card">
+        <h2>Démarche suivie</h2>
+
+        <h3>1. Mise en place de l’environnement</h3>
+        <p>
+          Le TP a été réalisé dans un environnement virtualisé comprenant plusieurs machines :
+          une machine cliente, une machine serveur hébergeant l’application web, et une machine
+          attaquante utilisée pour observer et intercepter le trafic réseau.
+        </p>
+
+        <h3>2. Analyse du réseau</h3>
+        <p>
+          Avant l’attaque, j’ai étudié les notions nécessaires au TP : différence entre adresse MAC
+          et adresse IP, rôle du protocole ARP, fonctionnement de l’IP forwarding et principe
+          de l’ARP spoofing.
+        </p>
+
+        <h3>3. Interception du trafic HTTP</h3>
+        <p>
+          Une fois l’attaque mise en place, j’ai pu observer le trafic réseau avec Wireshark.
+          Comme les données transitaient en HTTP, les identifiants saisis dans le formulaire
+          étaient visibles en clair dans les paquets capturés.
+        </p>
+
+        <h3>4. Comparaison avec HTTPS</h3>
+        <p>
+        Après avoir réussi à intercepter les identifiants transmis en HTTP, j’ai observé le comportement
+        du trafic lorsque le serveur utilise HTTPS. Dans Wireshark, les échanges apparaissent alors sous forme
+        de paquets TLS, ce qui empêche de lire directement le contenu du formulaire.
+        </p>
+      </section>
+
+      <section class="detail-card">
+        <h2>Compétences mobilisées</h2>
+        <ul>
+          <li>Analyse de trames réseau</li>
+          <li>Compréhension des protocoles ARP, HTTP et HTTPS</li>
+          <li>Utilisation de Wireshark</li>
+          <li>Sensibilisation à la sécurité des communications</li>
+          <li>Observation des effets du chiffrement TLS</li>
+        </ul>
+      </section>
+
+      <section class="detail-card">
+        <h2>Captures et preuves</h2>
+        <p>
+            Les captures ci-dessous montrent la différence entre une communication HTTP non chiffrée
+            et une communication HTTPS chiffrée lors d’une tentative d’interception réseau.
+        </p>
+
+        <div class="captures-grid">
+            <figure class="capture-card">
+            <img src="../captures/mitm/mitm-http.png" alt="Interception d'identifiants en HTTP avec Wireshark" />
+            <figcaption>
+                Interception en HTTP : les identifiants saisis dans le formulaire sont visibles en clair dans Wireshark.
+            </figcaption>
+            </figure>
+
+            <figure class="capture-card">
+            <img src="../captures/mitm/mitm-https.png" alt="Trafic HTTPS chiffré visible dans Wireshark" />
+            <figcaption>
+                Interception après passage en HTTPS : le trafic apparaît en TLS et les identifiants ne sont plus lisibles directement.
+            </figcaption>
+            </figure>
+        </div>
+        </section>
+
+      <section class="detail-card">
+        <h2>Conclusion</h2>
+        <p>
+          Ce TP m’a permis de comprendre concrètement le fonctionnement d’une attaque
+          Man-In-The-Middle et les risques liés à l’utilisation de HTTP. J’ai pu constater
+          qu’une communication non chiffrée peut exposer des informations sensibles, alors que
+          l’utilisation de HTTPS protège les échanges grâce au chiffrement. Cette réalisation
+          m’a permis de renforcer mes compétences en réseau et en cybersécurité.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Donovan Nguyen Van-Danh - Portfolio BTS SIO</p>
+    </div>
+  </footer>
+</body>
+</html>

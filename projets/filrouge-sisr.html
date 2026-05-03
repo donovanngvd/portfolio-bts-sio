@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projet Fil Rouge SISR - Déploiement et sécurisation web</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="logo">Donovan <span>Nguyen Van-Danh</span></a>
+      <nav class="nav-links">
+        <a href="../index.html#accueil">Accueil</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#synthese">Tableau de synthèse</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-detail">
+      <div class="container">
+        <a href="../index.html" class="btn btn-secondary">← Retour au portfolio</a>
+
+        <div class="badge">Projet technique • SISR • 2026</div>
+
+        <h1>Déploiement et sécurisation d’une application web</h1>
+
+        <div class="detail-card">
+          <h2>Présentation du projet</h2>
+          <p>
+            Ce projet fil rouge avait pour objectif de mettre en place une petite application web permettant
+            de poster et d’afficher des commentaires, puis de l’héberger sur une machine virtuelle Debian.
+          </p>
+          <p>
+            Le travail portait également sur l’observation de vulnérabilités comme l’injection SQL, le XSS
+            ou l’absence de chiffrement HTTPS, puis sur la mise en place de mesures de durcissement côté infrastructure.
+          </p>
+        </div>
+
+        <div class="detail-card">
+          <h2>Environnement technique</h2>
+          <ul>
+            <li>VirtualBox pour la virtualisation</li>
+            <li>Debian 12 comme serveur</li>
+            <li>Apache pour le service web</li>
+            <li>PHP pour l’application</li>
+            <li>MariaDB pour la base de données</li>
+            <li>Réseau en bridge pour accéder au serveur depuis le réseau local</li>
+            <li>UFW, HTTPS/TLS et ModSecurity pour le durcissement</li>
+          </ul>
+        </div>
+
+        <div class="detail-card">
+          <h2>Démarche réalisée</h2>
+
+          <h3>1. Mise en place de la machine virtuelle</h3>
+          <p>
+            J’ai installé une VM Debian 12 en version minimale, configurée en réseau bridge afin de pouvoir
+            accéder au serveur depuis mon PC. L’administration s’est faite principalement en SSH.
+          </p>
+
+          <h3>2. Installation des services</h3>
+          <p>
+            J’ai installé Apache, PHP et MariaDB afin de disposer d’un environnement complet pour héberger
+            l’application web et stocker les commentaires dans une base de données.
+          </p>
+
+          <pre><code>sudo apt update
+sudo apt upgrade -y
+sudo apt install apache2 php php-mysql mariadb-server -y</code></pre>
+
+          <h3>3. Création de la base de données</h3>
+          <p>
+            Une base de données nommée <code>tp_comments</code> a été créée, avec une table <code>comments</code>
+            permettant d’enregistrer les messages postés par les utilisateurs.
+          </p>
+
+          <pre><code>CREATE DATABASE tp_comments CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE comments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+          <h3>4. Création d’un utilisateur MySQL limité</h3>
+          <p>
+            Pour appliquer le principe du moindre privilège, j’ai créé un utilisateur MySQL dédié à l’application,
+            avec uniquement les droits nécessaires pour lire et insérer des commentaires.
+          </p>
+
+          <pre><code>CREATE USER 'tpuser'@'localhost' IDENTIFIED BY '[MOT_DE_PASSE]';
+GRANT SELECT, INSERT ON tp_comments.* TO 'tpuser'@'localhost';
+FLUSH PRIVILEGES;</code></pre>
+
+          <h3>5. Déploiement de l’application</h3>
+          <p>
+            L’application a été placée dans le répertoire servi par Apache afin d’être accessible depuis un navigateur
+            sur le réseau local.
+          </p>
+
+          <pre><code>/var/www/html/tp-comments/
+├── index.html
+├── submit.php
+├── comments.php
+└── sql/init.sql</code></pre>
+
+          <h3>6. Observation des vulnérabilités</h3>
+          <p>
+            L’application étant volontairement vulnérable, j’ai observé plusieurs failles : injection SQL,
+            exécution de script XSS et absence de chiffrement lorsque le site était accessible en HTTP.
+          </p>
+
+          <h3>7. Durcissement de l’infrastructure</h3>
+          <p>
+            Pour réduire les risques côté infrastructure, j’ai mis en place un pare-feu UFW, activé HTTPS/TLS
+            et ajouté ModSecurity comme couche de filtrage au niveau d’Apache.
+          </p>
+
+          <pre><code>sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
+
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+sudo systemctl reload apache2
+
+sudo apt install libapache2-mod-security2 -y
+sudo a2enmod security2
+sudo systemctl restart apache2</code></pre>
+        </div>
+
+        <div class="detail-card">
+          <h2>Captures et preuves</h2>
+          <p>
+            Les captures ci-dessous montrent les principales étapes du projet : installation des services,
+            base de données, application web, tests de vulnérabilités et sécurisation de l’infrastructure.
+          </p>
+
+          <div class="captures-grid">
+            <figure class="capture-card">
+              <a href="../captures/filrouge/apache-actif.png" target="_blank">
+                <img src="../captures/filrouge/apache-actif.png" alt="Service Apache actif">
+              </a>
+              <figcaption>Vérification du service Apache actif</figcaption>
+            </figure>
+
+            <figure class="capture-card">
+              <a href="../captures/filrouge/mariadb-actif.png" target="_blank">
+                <img src="../captures/filrouge/mariadb-actif.png" alt="Service MariaDB actif">
+              </a>
+              <figcaption>Vérification du service MariaDB actif</figcaption>
+            </figure>
+
+            <figure class="capture-card">
+              <a href="../captures/filrouge/base-donnees.png" target="_blank">
+                <img src="../captures/filrouge/base-donnees.png" alt="Base de données tp_comments">
+              </a>
+              <figcaption>Création de la base de données et de la table</figcaption>
+            </figure>
+
+            <figure class="capture-card">
+              <a href="../captures/filrouge/application-web.png" target="_blank">
+                <img src="../captures/filrouge/application-web.png" alt="Application web tp-comments">
+              </a>
+              <figcaption>Application web de commentaires accessible</figcaption>
+            </figure>
+
+            <figure class="capture-card">
+              <a href="../captures/filrouge/injection-sql.png" target="_blank">
+                <img src="../captures/filrouge/injection-sql.png" alt="Test d’injection SQL">
+              </a>
+              <figcaption>Observation d’une injection SQL</figcaption>
+            </figure>
+
+            <figure class="capture-card">
+              <a href="../captures/filrouge/xss.png" target="_blank">
+                <img src="../captures/filrouge/xss.png" alt="Test XSS">
+              </a>
+              <figcaption>Observation d’une faille XSS</figcaption>
+            </figure>
+
+            <figure class="capture-card">
+              <a href="../captures/filrouge/ufw-https.png" target="_blank">
+                <img src="../captures/filrouge/ufw-https.png" alt="Pare-feu UFW et HTTPS">
+              </a>
+              <figcaption>Activation du pare-feu UFW et du HTTPS</figcaption>
+            </figure>
+
+            <figure class="capture-card">
+              <a href="../captures/filrouge/modsecurity.png" target="_blank">
+                <img src="../captures/filrouge/modsecurity.png" alt="Module ModSecurity actif">
+              </a>
+              <figcaption>Activation de ModSecurity sur Apache</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <h2>Compétences travaillées</h2>
+          <ul>
+            <li>Administration d’un serveur Linux</li>
+            <li>Installation et configuration de services web</li>
+            <li>Déploiement d’une application PHP / MariaDB</li>
+            <li>Gestion des accès à une base de données</li>
+            <li>Analyse de vulnérabilités web</li>
+            <li>Durcissement d’une infrastructure avec UFW, HTTPS et ModSecurity</li>
+            <li>Documentation technique des actions réalisées</li>
+          </ul>
+        </div>
+
+        <div class="detail-card">
+          <h2>Conclusion</h2>
+          <p>
+            Ce projet m’a permis de mettre en pratique plusieurs compétences importantes de l’option SISR :
+            la mise en place d’un serveur, le déploiement d’un service web, la configuration d’une base de données
+            et la sécurisation de l’infrastructure.
+          </p>
+          <p>
+            Même si l’application restait volontairement vulnérable côté code, les mesures mises en place côté serveur
+            ont permis de réduire la surface d’attaque et de mieux comprendre le rôle de l’infrastructure dans la sécurité
+            d’un service web.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Donovan Nguyen Van-Danh - Portfolio BTS SIO</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TP Active Directory - Donovan Nguyen Van-Danh</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="../index.html#accueil" class="logo">Donovan <span>Nguyen Van-Danh</span></a>
+      <nav class="nav-links">
+        <a href="../index.html#accueil">Accueil</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#synthese">Tableau de synthèse</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="project-detail">
+    <div class="container">
+      <div class="hero-actions">
+        <a href="../index.html#projets" class="btn btn-secondary">← Retour au portfolio</a>
+        <span class="badge">Documentation projet • Windows Server</span>
+      </div>
+
+      <h1>Infrastructure Windows Server, Active Directory et IIS</h1>
+
+      <section class="detail-card">
+        <h2>Présentation du projet</h2>
+        <p>
+          Ce TP avait pour objectif de mettre en place une infrastructure simple autour du domaine
+          <code>efrei.local</code>. Le travail comprenait l’installation d’Active Directory et DNS,
+          la création d’unités organisationnelles, d’utilisateurs, de groupes, la configuration de GPO,
+          la mise en place de profils itinérants, ainsi que l’installation d’un serveur web IIS.
+        </p>
+      </section>
+
+      <section class="detail-card">
+        <h2>Environnement technique</h2>
+        <ul>
+          <li>Windows Server 2019</li>
+          <li>Active Directory Domain Services</li>
+          <li>DNS</li>
+          <li>Windows 10 comme client du domaine</li>
+          <li>Debian Linux comme client web</li>
+          <li>IIS pour le service web</li>
+          <li>VirtualBox avec réseau en bridge</li>
+        </ul>
+      </section>
+
+      <section class="detail-card">
+        <h2>Démarche réalisée</h2>
+
+        <h3>1. Configuration réseau</h3>
+        <p>
+          Les machines virtuelles ont été placées en réseau bridge afin de pouvoir communiquer sur le même réseau.
+          Le serveur Windows a reçu une adresse IP fixe, puis les clients ont été configurés pour utiliser le DNS du serveur.
+        </p>
+
+        <h3>2. Installation d’Active Directory et DNS</h3>
+        <p>
+          J’ai installé les rôles AD DS et DNS sur Windows Server 2019, puis j’ai promu le serveur en contrôleur
+          de domaine pour le domaine <code>efrei.local</code>.
+        </p>
+
+        <h3>3. Création des OU, utilisateurs et groupes</h3>
+        <p>
+          L’annuaire Active Directory a été structuré avec plusieurs unités organisationnelles comme Informatique,
+          Marketing et Ressources Humaines. Des utilisateurs et des groupes ont ensuite été créés dans les OU correspondantes.
+        </p>
+
+        <h3>4. Mise en place des profils itinérants</h3>
+        <p>
+          Un dossier partagé nommé <code>Profils$</code> a été créé sur le serveur. Les utilisateurs ont ensuite été configurés
+          avec un chemin de profil itinérant afin de centraliser leurs données de profil sur le serveur.
+        </p>
+
+        <h3>5. Configuration des GPO</h3>
+        <p>
+          Plusieurs stratégies de groupe ont été mises en place, notamment une GPO de sécurité et une GPO de redirection
+          du dossier Documents. Après application de la commande <code>gpupdate /force</code>, les paramètres ont été testés
+          depuis le poste client Windows.
+        </p>
+
+        <h3>6. Installation du service IIS</h3>
+        <p>
+          Le rôle IIS a été installé sur le serveur afin de publier un site web simple. L’accès au site a ensuite été testé
+          depuis le serveur, le client Windows et le client Linux.
+        </p>
+      </section>
+
+      <section class="detail-card">
+        <h2>Captures et preuves</h2>
+        <p>
+          Les captures ci-dessous montrent les différentes étapes de configuration de l’infrastructure :
+          réseau, Active Directory, utilisateurs, GPO, profils itinérants, IIS et tests clients.
+        </p>
+
+        <div class="captures-grid">
+          <figure class="capture-card">
+            <a href="../captures/active-directory/reseau-bridge.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/reseau-bridge.png" alt="Configuration réseau bridge">
+            </a>
+            <figcaption>Configuration réseau des machines virtuelles en mode bridge</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/ad-dns.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/ad-dns.png" alt="Installation AD DS et DNS">
+            </a>
+            <figcaption>Installation et configuration des rôles AD DS et DNS</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/ou-utilisateurs.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/ou-utilisateurs.png" alt="OU et utilisateurs Active Directory">
+            </a>
+            <figcaption>Création des OU, utilisateurs et groupes dans Active Directory</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/profils-itinerants.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/profils-itinerants.png" alt="Profils itinérants">
+            </a>
+            <figcaption>Configuration des profils itinérants avec le partage Profils$</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/gpo-securite.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/gpo-securite.png" alt="GPO de sécurité">
+            </a>
+            <figcaption>Configuration d’une GPO de sécurité</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/redirection-documents.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/redirection-documents.png" alt="Redirection du dossier Documents">
+            </a>
+            <figcaption>Redirection du dossier Documents via stratégie de groupe</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/iis-site.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/iis-site.png" alt="Site IIS">
+            </a>
+            <figcaption>Publication d’un site web avec IIS</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/client-windows.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/client-windows.png" alt="Client Windows intégré au domaine">
+            </a>
+            <figcaption>Test depuis le client Windows membre du domaine</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/active-directory/client-linux.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/active-directory/client-linux.png" alt="Client Linux accédant au site IIS">
+            </a>
+            <figcaption>Test d’accès au site IIS depuis un client Linux</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <h2>Compétences travaillées</h2>
+        <ul>
+          <li>Installation et administration de Windows Server</li>
+          <li>Configuration d’un contrôleur de domaine Active Directory</li>
+          <li>Gestion des utilisateurs, groupes et unités organisationnelles</li>
+          <li>Mise en place de stratégies de groupe</li>
+          <li>Configuration de profils itinérants</li>
+          <li>Installation et test d’un serveur web IIS</li>
+          <li>Tests de connectivité depuis des clients Windows et Linux</li>
+        </ul>
+      </section>
+
+      <section class="detail-card">
+        <h2>Conclusion</h2>
+        <p>
+          Ce TP m’a permis de comprendre le fonctionnement d’une infrastructure Windows Server en domaine.
+          J’ai pu mettre en place un contrôleur de domaine, organiser l’annuaire Active Directory, appliquer
+          des stratégies de groupe et vérifier le fonctionnement depuis plusieurs postes clients.
+        </p>
+        <p>
+          Ce travail m’a aussi permis de relier l’administration système, la gestion des utilisateurs et la mise
+          à disposition de services réseau dans un environnement proche d’un contexte professionnel.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Donovan Nguyen Van-Danh - Portfolio BTS SIO</p>
+    </div>
+  </footer>
+</body>
+</html>

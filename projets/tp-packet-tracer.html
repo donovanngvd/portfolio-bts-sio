@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TP Packet Tracer - Donovan Nguyen Van-Danh</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="../index.html#accueil" class="logo">Donovan <span>Nguyen Van-Danh</span></a>
+      <nav class="nav-links">
+        <a href="../index.html#accueil">Accueil</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#synthese">Tableau de synthèse</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="project-detail">
+    <div class="container">
+      <div class="hero-actions">
+        <a href="../index.html#projets" class="btn btn-secondary">← Retour au portfolio</a>
+        <span class="badge">Documentation projet • Réseaux</span>
+      </div>
+
+      <h1>Conception et configuration de réseaux avec Packet Tracer</h1>
+
+      <section class="detail-card">
+        <h2>Présentation du projet</h2>
+        <p>
+          Cette page regroupe plusieurs travaux pratiques réalisés sur Cisco Packet Tracer.
+          L’objectif était de concevoir des topologies réseau, configurer des services essentiels
+          et vérifier le bon fonctionnement des communications entre les équipements.
+        </p>
+      </section>
+
+      <section class="detail-card">
+        <h2>Environnement technique</h2>
+        <ul>
+          <li>Cisco Packet Tracer</li>
+          <li>PC, switchs, routeurs et serveurs simulés</li>
+          <li>Adressage IPv4</li>
+          <li>Services DHCP, DNS, HTTP et Wi-Fi</li>
+          <li>VLAN, trunk et routage inter-VLAN</li>
+        </ul>
+      </section>
+
+      <section class="detail-card">
+        <h2>TP1 — Routage entre deux réseaux</h2>
+        <p>
+          Ce premier TP avait pour but de comprendre la communication entre deux réseaux différents.
+          J’ai configuré les adresses IP, les passerelles et les interfaces du routeur afin de permettre
+          la communication entre deux LAN.
+        </p>
+
+        <div class="captures-grid">
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp1-topologie-routage.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp1-topologie-routage.png" alt="Topologie de routage Packet Tracer">
+            </a>
+            <figcaption>Topologie avec deux réseaux reliés par un routeur</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp1-test-ping.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp1-test-ping.png" alt="Test ping entre deux réseaux">
+            </a>
+            <figcaption>Test de connectivité entre deux réseaux différents</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <h2>TP2 — DHCP sur plusieurs LAN</h2>
+        <p>
+          Ce TP portait sur la configuration du DHCP afin d’attribuer automatiquement des adresses IP
+          aux machines clientes. J’ai également configuré la passerelle par défaut pour permettre la
+          communication entre plusieurs LAN.
+        </p>
+
+        <div class="captures-grid">
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp2-dhcp-plusieurs-lan.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp2-dhcp-plusieurs-lan.png" alt="Topologie DHCP sur plusieurs LAN">
+            </a>
+            <figcaption>Topologie avec DHCP sur plusieurs LAN</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp2-ip-dhcp-client.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp2-ip-dhcp-client.png" alt="Adresse IP reçue par DHCP">
+            </a>
+            <figcaption>Adresse IP reçue automatiquement par un client DHCP</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp2-test-ping.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp2-test-ping.png" alt="Ping DHCP entre LAN">
+            </a>
+            <figcaption>Test de connectivité après configuration DHCP</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <h2>TP3 — DNS et serveur web</h2>
+        <p>
+          Ce TP avait pour objectif de configurer un serveur DNS afin d’associer des noms de machines
+          à des adresses IP. J’ai également ajouté un serveur web et vérifié son accessibilité via son nom DNS.
+        </p>
+
+        <div class="captures-grid">
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp3-dns-serveur-web.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp3-dns-serveur-web.png" alt="Topologie DNS et serveur web">
+            </a>
+            <figcaption>Topologie avec serveur DNS et serveur web</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp3-enregistrement-dns.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp3-enregistrement-dns.png" alt="Enregistrement DNS SERVEUR_WEB">
+            </a>
+            <figcaption>Enregistrement DNS du serveur web</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp3-ping-nom.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp3-ping-nom.png" alt="Ping vers SERVEUR_WEB">
+            </a>
+            <figcaption>Test de résolution DNS avec un ping vers le nom du serveur</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <h2>TP4 — Wi-Fi sécurisé avec WPA2-Entreprise</h2>
+        <p>
+          Ce TP portait sur la configuration d’un réseau Wi-Fi sécurisé avec WPA2-Entreprise.
+          J’ai utilisé un serveur AAA/RADIUS pour gérer l’authentification des utilisateurs au réseau sans fil.
+        </p>
+
+        <div class="captures-grid">
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp4-wpa2-entreprise.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp4-wpa2-entreprise.png" alt="Topologie Wi-Fi WPA2-Entreprise">
+            </a>
+            <figcaption>Topologie du réseau Wi-Fi sécurisé</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp4-radius-aaa.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp4-radius-aaa.png" alt="Configuration AAA RADIUS">
+            </a>
+            <figcaption>Configuration du serveur AAA/RADIUS</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp4-pc-connecte-wifi.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp4-pc-connecte-wifi.png" alt="PC connecté au Wi-Fi sécurisé">
+            </a>
+            <figcaption>Connexion du PC au réseau Wi-Fi sécurisé</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <h2>TP5 — VLAN, trunk et routage inter-VLAN</h2>
+        <p>
+          Ce TP m’a permis de travailler sur la segmentation réseau avec les VLAN.
+          J’ai configuré plusieurs VLAN, des liens trunk entre les switchs et des sous-interfaces
+          sur le routeur afin de permettre le routage inter-VLAN.
+        </p>
+
+        <div class="captures-grid">
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp5-topologie-vlan.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp5-topologie-vlan.png" alt="Topologie VLAN Packet Tracer">
+            </a>
+            <figcaption>Topologie avec VLAN, trunk et routeur</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp5-show-vlan.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp5-show-vlan.png" alt="Commande show vlan">
+            </a>
+            <figcaption>Vérification des VLAN avec la commande show vlan</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp5-router-subinterfaces.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp5-router-subinterfaces.png" alt="Sous-interfaces routeur dot1Q">
+            </a>
+            <figcaption>Configuration des sous-interfaces du routeur en dot1Q</figcaption>
+          </figure>
+
+          <figure class="capture-card">
+            <a href="../captures/packet-tracer/tp5-test-ping-intervlan.png" target="_blank" rel="noopener noreferrer">
+              <img src="../captures/packet-tracer/tp5-test-ping-intervlan.png" alt="Ping inter-VLAN réussi">
+            </a>
+            <figcaption>Test de communication entre VLAN différents</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <h2>Compétences travaillées</h2>
+        <ul>
+          <li>Conception de topologies réseau</li>
+          <li>Configuration d’adresses IP et de passerelles</li>
+          <li>Configuration de services DHCP et DNS</li>
+          <li>Sécurisation d’un réseau Wi-Fi avec WPA2-Entreprise</li>
+          <li>Configuration de VLAN, trunk et routage inter-VLAN</li>
+          <li>Tests de connectivité avec ping et simulation Packet Tracer</li>
+        </ul>
+      </section>
+
+      <section class="detail-card">
+        <h2>Conclusion</h2>
+        <p>
+          Ces travaux pratiques m’ont permis de mieux comprendre le fonctionnement des réseaux locaux,
+          la configuration des équipements et l’importance des services réseau comme DHCP et DNS.
+          Les TP sur les VLAN et le Wi-Fi sécurisé m’ont aussi permis de travailler sur la segmentation
+          et la sécurisation d’un réseau.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Donovan Nguyen Van-Danh - Portfolio BTS SIO</p>
+    </div>
+  </footer>
+</body>
+</html>
